@@ -166,22 +166,24 @@ function StepUpload({onFile, fileRef}) {
       <div className="fic-logo">FIC</div>
       <h1 className="fic-title">Fixed Income Calculator</h1>
       <p className="fic-sub">Upload your brokerage CSV to calculate your portfolio's dividend and interest income.</p>
-      <div className="step-card">
-        <div className="step-num">1</div>
-        <div><strong>Upload CSV</strong><span>Export positions from Schwab, Fidelity, or any brokerage</span></div>
-      </div>
-      <div className="step-card step-card-dim">
-        <div className="step-num step-num-dim">2</div>
-        <div><strong>Confirm Dividends</strong><span>Each symbol is verified against live data</span></div>
-      </div>
-      <div className="step-card step-card-dim">
-        <div className="step-num step-num-dim">3</div>
-        <div><strong>View Income</strong><span>See your full annual income dashboard</span></div>
-      </div>
       <button className="upload-btn" onClick={()=>fileRef.current&&fileRef.current.click()}>
         Upload Brokerage CSV →
       </button>
       <p className="privacy-note">Your data never leaves your browser. Nothing is stored on any server.</p>
+      <div style={{width:"100%",maxWidth:420,marginTop:20,display:"flex",flexDirection:"column",gap:0}}>
+        <div className="step-card">
+          <div className="step-num">1</div>
+          <div><strong>Upload CSV</strong><span>Export positions from Schwab, Fidelity, or any brokerage</span></div>
+        </div>
+        <div className="step-card step-card-dim">
+          <div className="step-num step-num-dim">2</div>
+          <div><strong>Confirm Dividends</strong><span>Each symbol is verified against live data</span></div>
+        </div>
+        <div className="step-card step-card-dim">
+          <div className="step-num step-num-dim">3</div>
+          <div><strong>View Income</strong><span>See your full annual income dashboard</span></div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -362,8 +364,8 @@ function StepProblems({holdings, onApplySuggestion, onRetryAll, onGoToDashboard}
               </div>
             </div>
 
-            <div style={{fontFamily:"'DM Mono',monospace",fontSize:9,textTransform:"uppercase",letterSpacing:".1em",color:"#94a3b8",marginBottom:8}}>
-              3 Suggested Replacements — click to test &amp; apply
+            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,color:"#1e293b",marginBottom:10}}>
+              3 Suggested Replacements — Click to Test &amp; apply
             </div>
             <div style={{display:"flex",flexDirection:"column",gap:7}}>
               {suggs.map((sg,idx) => {
@@ -424,11 +426,6 @@ function StepAllClear({count, onGoToDashboard}) {
         <div className="step-num step-num-done">✓</div>
         <div><strong>Dividends Confirmed</strong><span>All symbols verified successfully</span></div>
       </div>
-      <div className="step-card step-card-active">
-        <div className="step-num">3</div>
-        <div><strong>View Income</strong><span>Your dashboard is ready</span></div>
-      </div>
-
       <button className="upload-btn" style={{background:"#10b981",fontSize:17,padding:"16px 40px",marginTop:8,animation:"popIn .5s ease .1s both"}} onClick={onGoToDashboard}>
         View Income Dashboard →
       </button>
