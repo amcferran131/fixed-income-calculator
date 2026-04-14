@@ -114,7 +114,7 @@ function generateSuggestions(ticker) {
 async function aiLookup(ticker, onResult, onError, onLoad) {
   onLoad(true);
   try {
-    const r = await fetch("https://dividend-api-production.up.railway.app/dividends", {
+    const r = await fetch("/api/dividends", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ tickers:[ticker] }),
     });
