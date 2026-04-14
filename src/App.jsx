@@ -29,6 +29,14 @@ const fmt = (n, d=0) => n == null ? "--" :
 const fmtDate = s => { if(!s) return null; const p=s.split('-'); return MN[+p[1]-1]+' '+p[2]; };
 const parseNum = s => parseFloat(String(s||"0").replace(/[$,%\s,"()]/g,"")) || 0;
 
+// ── Tax Treatment Dummy Data (placeholder until manual entry is built) ───────
+const TAX_DUMMY = [
+  { label:"Qualified",    value:42000, pct:46, color:"#10b981" },
+  { label:"Non-Qualified",value:28000, pct:30, color:"#3b82f6" },
+  { label:"199A / REIT",  value:15000, pct:16, color:"#f59e0b" },
+  { label:"Tax-Exempt",   value:6878,  pct:8,  color:"#06b6d4" },
+];
+
 // ── CSV Parsing ────────────────────────────────────────────────────────────
 function splitLine(line) {
   const out = []; let cur = "", inQ = false;
@@ -970,6 +978,25 @@ export default function App() {
                   </AreaChart>
                 </ResponsiveContainer>
                 <div className="hint" style={{marginTop:4}}>Blue = actual | Dashed = goal pace</div>
+              </div>
+
+              <div className="card">
+                <div className="chdr"><span className="ctit">By Tax Treatment</span><span className="cbdg">Dummy data — coming soon</span></div>
+                <ResponsiveContainer width="100%" height={150}>
+                  <PieChart><Pie data={TAX_DUMMY} dataKey="value" nameKey="label" cx="50%" cy="50%" innerRadius={38} outerRadius={62} paddingAngle={3}>
+                    {TAX_DUMMY.map((d,i)=><Cell key={i} fill={d.color} stroke="transparent"/>)}
+                  </Pie><Tooltip formatter={v=>fmt(v)} contentStyle={{background:"#fff",border:"1px solid #e2e8f0",borderRadius:8,fontFamily:"monospace",fontSize:11}}/></PieChart>
+                </ResponsiveContainer>
+                <div style={{marginTop:8,display:"flex",flexDirection:"column",gap:5}}>
+                  {TAX_DUMMY.map(d=>(
+                    <div key={d.label} style={{display:"flex",alignItems:"center",gap:7,fontSize:11}}>
+                      <span style={{width:7,height:7,borderRadius:"50%",background:d.color,flexShrink:0}}/>
+                      <span style={{flex:1,color:"#64748b",fontFamily:"monospace",fontSize:10}}>{d.label}</span>
+                      <span style={{fontFamily:"monospace"}}>{fmt(d.value)}</span>
+                      <span style={{color:"#94a3b8",fontFamily:"monospace",fontSize:10}}>{d.pct}%</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
