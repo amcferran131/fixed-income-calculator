@@ -171,10 +171,6 @@ function StepUpload({onFile, fileRef}) {
       </button>
       <p className="privacy-note">Your data never leaves your browser. Nothing is stored on any server.</p>
       <div style={{width:"100%",maxWidth:420,marginTop:20,display:"flex",flexDirection:"column",gap:0}}>
-        <div className="step-card">
-          <div className="step-num">1</div>
-          <div><strong>Upload CSV</strong><span>Export positions from Schwab, Fidelity, or any brokerage</span></div>
-        </div>
         <div className="step-card step-card-dim">
           <div className="step-num step-num-dim">2</div>
           <div><strong>Confirm Dividends</strong><span>Each symbol is verified against live data</span></div>
