@@ -126,7 +126,8 @@ async function aiLookup(ticker, onResult, onError, onLoad) {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ tickers:[ticker] }),
     });
-    const d = await r.json();
+    const text = await r.text();
+const d = JSON.parse(text.replace(/:\s*NaN\b/g, ":null").replace(/:\s*-?Infinity\b/g, ":null"));
     if (d.errors?.length && !d.results?.length) throw new Error(d.errors[0].error);
     const data = d.results?.[0];
     if (!data) throw new Error("No data returned");
